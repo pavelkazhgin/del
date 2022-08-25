@@ -16,6 +16,7 @@ dotenv.config({ path: path });
 
 const DIRS = process.env.DIRS.split(',');
 const MAX_SIZE = process.env.MAX_SIZE;
+const MAX_SUBDIR = process.env.MAX_SUBDIR;
 
 
-module.exports = { DIRS, MAX_SIZE }
+module.exports = { DIRS, MAX_SIZE, MAX_SUBDIR  }
