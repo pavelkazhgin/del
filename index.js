@@ -27,7 +27,7 @@ async function validateDirs(arr){
 async function clearMemory(arr, maxSize) {
 
   for (let i = 0; i < arr.length; i++) {
-    const sizeOfDir = (await fastFolderSizeAsync(arr[i]))/1073741824;  //GB
+    const sizeOfDir = (await fastFolderSizeAsync(arr[i]))/1048576;  //GB
     console.log('This is size of Dir', sizeOfDir);
       
     if (sizeOfDir >= Number(maxSize)) {
