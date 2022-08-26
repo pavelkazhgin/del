@@ -1,0 +1,6 @@
+DIRS = ./sessions,./logs
+MAX_SIZE = 2
+MAX_SUBDIR = 1
+FILE_EXTENSIONS = .zip,.apk
+CURRENT_FILE = ./sessions
+SIZE_CURR_FILE = 1
