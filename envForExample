@@ -1,6 +1,6 @@
 DIRS = ./sessions,./logs
-MAX_SIZE = 2
+MAX_SIZE = 50
 MAX_SUBDIR = 1
 FILE_EXTENSIONS = .zip,.apk
-CURRENT_FILE = ./sessions
-SIZE_CURR_FILE = 1
+CURRENTS_FILE = ./sessions/20MBcop.zip,./sessions/20MB.zip
+SIZE_CURR_FILE = 30

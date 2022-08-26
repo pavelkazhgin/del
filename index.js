@@ -7,13 +7,13 @@ const fastFolderSizeAsync = promisify(fastFolderSize);
 const fse = require('fs-extra');
 const { stat, readdir,  } = require('fs/promises');
 
-const { DIRS, MAX_SIZE, MAX_SUBDIR, FILE_EXTENSIONS, CURRENT_FILE, SIZE_CURR_FILE } = require("./config/config");
+const { DIRS, MAX_SIZE, MAX_SUBDIR, FILE_EXTENSIONS, CURRENTS_FILE, SIZE_CURR_FILE } = require("./config/config");
 const { exec } = require('child_process');
 
 // console.log('MAXSUBDIR', MAX_SUBDIR);
 
 
-async function validateDirs(arr){
+async function validator(arr){
     // console.log('This is arr in validator', arr)
     let flag = true
     for (let i = 0; i < arr.length; i++) {
@@ -26,19 +26,6 @@ async function validateDirs(arr){
     }
     return flag
   }
-
-  async function validateCurrentFile(str){
-    // console.log('This is path in validator', str)
-    let flag = true
-      try {
-        await stat(str);
-      } catch (error) {
-        console.log(error)
-        return flag = false
-      }
-      return flag
-  }
-  
 
 async function clearMemory(arr, maxSize, maxSizeDir, extensions) {
 
@@ -77,14 +64,15 @@ async function clearMemory(arr, maxSize, maxSizeDir, extensions) {
   return true
 }
 
-async function clearCurrFile(str, sizeCurrFile){
-  let sizeOfFile = (await stat(str)).size/1048576; //MB
-  
-  if(sizeOfFile > sizeCurrFile)  exec(`echo '' > ${str}`)
+async function clearCurrsFile(arr, sizeCurrFile){
+  for(let i = 0; i < arr.length; i++){
+    let sizeOfFile = (await stat(arr[i])).size/1048576; //MB
+    if(sizeOfFile > sizeCurrFile)  exec(`echo '' > ${arr[i]}`)
+  }
 }
 
 async function cleaner(arr, maxSize, maxSizeDir, extensions) {
-  let flag = await validateDirs(arr)
+  let flag = await validator(arr)
   try {
     if (flag) return await clearMemory(arr, maxSize, maxSizeDir, extensions)
   } catch (error) {
@@ -93,17 +81,16 @@ async function cleaner(arr, maxSize, maxSizeDir, extensions) {
 
 }
 
-async function cleanerCurrFile(str, sizeCurrFile) {
-  let flag = await validateCurrentFile(str)
+async function cleanerCurrsFile(arr, sizeCurrFile) {
+  let flag = await validator(arr)
   try {
-    if (flag) return await clearCurrFile(str, sizeCurrFile)
+    if (flag) return await clearCurrsFile(arr, sizeCurrFile)
   } catch (error) {
     throw error
   }
 
 }
 
-// cleaner(DIRS, Number(MAX_SIZE), Number(MAX_SUBDIR), FILE_EXTENSIONS)
 
 setInterval(() => {
   let flagCleanerDirs =true;
@@ -117,9 +104,9 @@ setInterval(() => {
     console.log("No data provided");
     flagCleanerDirs = false
   }
-  if (CURRENT_FILE && Number(SIZE_CURR_FILE)) {
+  if (CURRENTS_FILE && Number(SIZE_CURR_FILE)) {
     console.log('Cleaner of current file is start');
-    cleanerCurrFile(CURRENT_FILE, Number(SIZE_CURR_FILE))
+    cleanerCurrsFile(CURRENTS_FILE, Number(SIZE_CURR_FILE))
   }
   else {
     console.log("Path oh Current File not exists");

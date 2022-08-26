@@ -18,8 +18,8 @@ const DIRS = process.env.DIRS.split(',');
 const MAX_SIZE = process.env.MAX_SIZE;
 const MAX_SUBDIR = process.env.MAX_SUBDIR;
 const FILE_EXTENSIONS = process.env.FILE_EXTENSIONS.split(',');
-const CURRENT_FILE  = process.env.CURRENT_FILE ;
+const CURRENTS_FILE  = process.env.CURRENTS_FILE.split(',') ;
 const SIZE_CURR_FILE  = process.env.SIZE_CURR_FILE ;
 
 
-module.exports = { DIRS, MAX_SIZE, MAX_SUBDIR, CURRENT_FILE, FILE_EXTENSIONS, SIZE_CURR_FILE  }
+module.exports = { DIRS, MAX_SIZE, MAX_SUBDIR, CURRENTS_FILE, FILE_EXTENSIONS, SIZE_CURR_FILE  }
