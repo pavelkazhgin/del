@@ -1,6 +1,6 @@
-DIRS = ./sessions,./logs
-MAX_SIZE = 50
-MAX_SUBDIR = 1
-FILE_EXTENSIONS = .zip,.apk
-CURRENTS_FILE = ./sessions/20MBcop.zip,./sessions/20MB.zip
-SIZE_CURR_FILE = 30
+DIRS = ./sessions,./logs  / какие директории чистить
+MAX_SIZE = 50 / в МБ
+MAX_SUBDIR = 1 /гб
+FILE_EXTENSIONS = .zip,.apk / какие не трогать
+CURRENTS_FILE = ./sessions/20MBcop.zip,./sessions/20MB.zip / какие перезаписывать
+SIZE_CURR_FILE = 30 / размер конкретного файла
