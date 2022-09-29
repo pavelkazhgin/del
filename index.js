@@ -20,7 +20,7 @@ async function validator(arr){
       try {
         await stat(arr[i]);
       } catch (error) {
-        console.log(error)
+        console.log('in error', error)
         return flag = false
       }
     }
@@ -114,7 +114,7 @@ setInterval(() => {
   }
   if(!flagCleanerDirs && !flagCleanerFile) process.exit(0)
 
-}, 5000)
+}, 10000)
 
 
 
